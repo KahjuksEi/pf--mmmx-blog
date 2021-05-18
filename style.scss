@@ -1,0 +1,1048 @@
+$breakpoints: (
+  "small": (
+    min-width: 768px,
+  ),
+  "medium": (
+    min-width: 1024px,
+  ),
+  "large": (
+    min-width: 1280px,
+  ),
+  "extra-large": (
+    min-width: 1940px,
+  ),
+) !default;
+
+@mixin breakpoint($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  } @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+@font-face {
+  font-family: "Volte";
+  src: url("./volte-regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "VolteBold";
+  src: url("VolteRounded-Bold.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin greenblock {
+  height: auto;
+  color: #fff;
+  background: #add739;
+  font-weight: bold;
+  border-top-right-radius: 25px;
+  line-height: 40px;
+  @include breakpoint("small") {
+    height: 92px;
+  }
+}
+@mixin readMore {
+  color: #add739;
+  font-size: 24px;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  @include breakpoint("small") {
+    font-size: 24px;
+  }
+}
+@mixin date {
+  color: #fff;
+  font-size: 9px;
+  width: 30px;
+  height: 43px;
+  position: relative;
+  z-index: 2;
+  border-bottom-right-radius: 10px;
+  text-align: center;
+  line-height: 18px;
+  @include breakpoint("small") {
+    width: 60px;
+    height: 86px;
+    margin-top: -50px;
+    font-size: 20px;
+    border-bottom-right-radius: 25px;
+    line-height: 40px;
+  }
+  span {
+    font-size: 21px;
+    font-weight: bold;
+    @include breakpoint("small") {
+      font-size: 42px;
+    }
+  }
+}
+
+.bloglist h1 {
+  font-size: 30px;
+  font-family: "VolteBold";
+  @include breakpoint("small") {
+    font-size: 40px;
+  }
+}
+.bloglist nav ul {
+  max-width: 510px;
+  padding-left: 30px;
+  @include breakpoint("small") {
+    padding-left: revert;
+  }
+  li {
+    list-style: none;
+    padding-top: 22px;
+    line-height: 40px;
+    border-bottom: 1px solid #add739;
+    @include breakpoint("small") {
+      border-bottom: 2.13px solid #add739;
+    }
+    a {
+      color: #000;
+      font-size: 25px;
+      text-decoration: none;
+      font-family: "VolteBold";
+      @include breakpoint("small") {
+        font-size: 42px;
+      }
+    }
+  }
+}
+
+.title-wrap {
+  display: flex;
+}
+.delimiter {
+  width: 100%;
+  height: 5px;
+  margin: 42px 0px 0px 25px;
+  opacity: 0.5;
+  background: #add739;
+  @include breakpoint("small") {
+    margin-top: 60px;
+  }
+}
+
+.bloglist {
+  font-family: "Volte";
+  &__wrap {
+    display: flex;
+    flex-wrap: wrap;
+    @include breakpoint("large") {
+      margin-top: 100px;
+    }
+  }
+}
+
+.container {
+  display: grid;
+  place-items: center;
+  @include breakpoint("small") {
+    display: block;
+    padding: 0px 24px;
+    max-width: 1024px;
+    margin: 0px auto;
+  }
+  @include breakpoint("extra-large") {
+    max-width: 1940px;
+    padding: 0px 85px;
+  }
+}
+.main-image-block {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  @include breakpoint("small") {
+    padding-bottom: 72px;
+  }
+  img {
+    width: 100%;
+  }
+  & .owl-dots {
+    width: 80px;
+    top: 32px;
+    left: 48%;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    button {
+      width: 20px;
+      height: 20px;
+      display: block;
+      border-radius: 50%;
+      span {
+        width: 20px !important;
+        height: 20px !important;
+      }
+    }
+  }
+  &__label {
+    @include greenblock;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    font-size: 17px;
+    line-height: 20px;
+    border-radius: 0px;
+    z-index: 2;
+    @include breakpoint("small") {
+      width: 100%;
+      font-size: 34px;
+      line-height: 40px;
+      border-top-right-radius: 25px;
+    }
+    span {
+      width: 230px;
+      display: block;
+      padding: 6px 0px 6px 40px;
+      font-family: "VolteBold";
+      @include breakpoint("small") {
+        width: 430px;
+        padding-left: 26px;
+      }
+    }
+  }
+}
+.novelties-block {
+  margin-top: 12px;
+  padding: 0px 20px;
+  @include breakpoint("small") {
+    margin-top: 0px;
+    padding: 0px;
+  }
+  @include breakpoint("large") {
+    margin-top: 100px;
+  }
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 20px;
+    @include breakpoint("small") {
+      padding: 0px;
+    }
+    @include breakpoint("large") {
+      flex-direction: row;
+    }
+  }
+}
+.novelties-item {
+  @include breakpoint("large") {
+    width: 100%;
+  }
+  @include breakpoint("large") {
+    width: 50%;
+  }
+  &__wrap {
+    display: flex;
+    margin-bottom: 24px;
+    @include breakpoint("large") {
+      flex-direction: column;
+    }
+    @include breakpoint("extra-large") {
+      flex-direction: row;
+    }
+  }
+  &__item {
+    img {
+      display: none;
+      @include breakpoint("small") {
+        display: block;
+        width: 320px;
+        height: 210px;
+        margin: 0px 42px 0px 0px;
+      }
+    }
+    h2 {
+      margin: 0px;
+      color: #add739;
+      font-size: 18px;
+      line-height: 43px;
+      font-family: "VolteBold";
+      @include breakpoint("small") {
+        font-size: 37px;
+      }
+    }
+    p {
+      line-height: 12px;
+      font-size: 10.5px;
+      @include breakpoint("small") {
+        font-size: revert;
+        line-height: 24px;
+      }
+    }
+  }
+  &__authordate {
+    font-size: 12px;
+    @include breakpoint("small") {
+      font-size: revert;
+      b {
+        font-family: "VolteBold";
+      }
+    }
+  }
+}
+.entrepreneurship-block {
+  order: 2;
+  padding: 0px 20px;
+  width: 100%;
+  @include breakpoint("small") {
+    padding: 0px;
+    order: revert;
+  }
+  @include breakpoint("large") {
+    padding: 0px;
+    width: 48%;
+  }
+  @include breakpoint("extra-large") {
+    padding: 0px;
+    width: 63%;
+  }
+  &__wrap {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 0px 30px;
+    @include breakpoint("small") {
+      flex-direction: row;
+      padding: 0px;
+    }
+  }
+  .entrepreneurship-item {
+    width: 100%;
+    display: flex;
+    min-height: 70px;
+    @include breakpoint("small") {
+      width: 29%;
+      flex-direction: row;
+      display: block;
+    }
+    img {
+      display: none;
+      @include breakpoint("small") {
+        display: block;
+        width: 100%;
+        z-index: 1;
+      }
+    }
+    &__date {
+      @include date;
+      background: #ffa22b;
+    }
+    p {
+      font-size: 12px;
+      font-family: "VolteBold";
+      margin: 0px 12px 12px 12px;
+      @include breakpoint("small") {
+        font-size: 24px;
+        margin: 36px 0px;
+        min-height: 72px;
+      }
+    }
+    a {
+      @include readMore;
+      padding-left: 10px;
+      @include breakpoint("small") {
+        padding-left: 0;
+      }
+    }
+  }
+}
+.season-block {
+  padding: 0px 20px;
+  width: 100%;
+  order: 3;
+  @include breakpoint("small") {
+    padding: 0;
+    order: revert;
+  }
+  @include breakpoint("large") {
+    width: 48%;
+  }
+  @include breakpoint("extra-large") {
+    width: 63%;
+  }
+}
+.season-item {
+  width: 50%;
+  background: rgba(173, 215, 57, 0.24);
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
+  h3 {
+    font-size: 13px;
+    font-family: "VolteBold";
+    @include breakpoint("small") {
+      font-size: 27px;
+    }
+  }
+  p {
+    font-size: 10px;
+    @include breakpoint("small") {
+      font-size: revert;
+    }
+  }
+  &__wrap {
+    display: flex;
+    @include breakpoint("large") {
+      height: auto;
+    }
+  }
+  &__cont {
+    padding: 0px 18px 18px 18px;
+    @include breakpoint("small") {
+      padding: 24px 55px;
+    }
+    a {
+      @include readMore;
+    }
+  }
+}
+.season-item:nth-of-type(1) {
+  display: none;
+  @include breakpoint("small") {
+    display: block;
+  }
+}
+.season-item:nth-of-type(2) {
+  width: 100%;
+  @include breakpoint("small") {
+    width: 50%;
+  }
+}
+.tips-block {
+  width: 100%;
+  padding: 0px 20px;
+  order: 6;
+  @include breakpoint("small") {
+    padding: 0;
+    order: revert;
+  }
+  @include breakpoint("large") {
+    width: 48%;
+  }
+  @include breakpoint("extra-large") {
+    width: 63%;
+  }
+}
+.tips-item {
+  padding: 20px;
+  background: rgba(173, 215, 57, 0.24);
+  p {
+    margin: 0;
+    font-size: 10px;
+    @include breakpoint("small") {
+      font-size: revert;
+      padding-bottom: 20px;
+    }
+  }
+  a {
+    @include readMore;
+  }
+}
+.bottom-block {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  @include breakpoint("large") {
+    flex-direction: row;
+  }
+}
+.subscribe-block {
+  @include greenblock;
+  width: 316px;
+  height: 90px;
+  text-align: center;
+  z-index: 2;
+  position: sticky;
+  bottom: 0px;
+  @include breakpoint("small") {
+    height: 128px;
+    width: 630px;
+  }
+  h3 {
+    font-size: 16px;
+    margin: 0px;
+    padding-top: 4px;
+    @include breakpoint("small") {
+      font-size: 33px;
+    }
+  }
+  span {
+    z-index: 3;
+    position: relative;
+    font-size: 10px;
+    margin: -20px 0px 0px 0px;
+    display: block;
+    @include breakpoint("small") {
+      display: inline;
+      font-size: revert;
+    }
+  }
+  &__pic {
+    width: 28px;
+    height: 15px;
+    background: #fff;
+    margin-top: 1px;
+    border-radius: 2px;
+    position: relative;
+    @include breakpoint("small") {
+      width: 57px;
+      height: 30px;
+      border-radius: 4px;
+      margin-top: 0;
+    }
+    .edge {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #add739;
+      margin: 0px 0px 0px -2px;
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      position: absolute;
+      top: -25px;
+      z-index: 2;
+      @include breakpoint("small") {
+        width: 40px;
+        height: 40px;
+        border: 3px solid #add739;
+        margin: 0px 0px 0px 4px;
+        top: -30px;
+      }
+    }
+  }
+  &__field {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 20px;
+    @include breakpoint("small") {
+      padding: 0px 55px;
+    }
+    input {
+      border: 0;
+      width: 85%;
+      &::placeholder {
+        color: transparent;
+        @include breakpoint("large") {
+          display: revert;
+          float: right;
+          margin: 6px 4px 0px 0px;
+          color: #add739;
+        }
+      }
+    }
+  }
+}
+::-moz-placeholder,
+:-moz-placeholder {
+  opacity: 1;
+  text-align: right;
+}
+
+.paginator {
+  display: none;
+  @include breakpoint("small") {
+    width: 180px;
+    margin: 70px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: rgba(124, 124, 123, 0.1);
+    span:not(:first-child):not(:last-child) {
+      font-size: 38px;
+    }
+  }
+}
+
+.sidebar {
+  padding: 0px 40px;
+  @include breakpoint("small") {
+    padding: 0;
+  }
+  &__title {
+    @include greenblock;
+    @include breakpoint("small") {
+      max-width: 650px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 35px;
+      padding: 6px 0px 6px 30px;
+      @include breakpoint("small") {
+        font-size: 60px;
+        padding: 25px 0px 0px 50px;
+      }
+    }
+  }
+}
+
+.sidebar-aside {
+  order: 1;
+  min-width: 593px;
+  @include breakpoint("small") {
+    order: revert;
+  }
+  @include breakpoint("large") {
+    min-width: unset;
+    margin-left: auto;
+    width: 48%;
+  }
+  @include breakpoint("extra-large") {
+    min-width: 593px;
+    width: revert;
+  }
+}
+.req-block-aside {
+  width: 100%;
+  order: 4;
+  margin-top: 0px;
+  margin-left: auto;
+  @include breakpoint("small") {
+    order: revert;
+  }
+  @include breakpoint("large") {
+    width: 48%;
+  }
+  @include breakpoint("extra-large") {
+    min-width: 593px;
+    width: 32%;
+  }
+}
+.fin-block-aside {
+  width: 100%;
+  margin-top: 0px;
+  order: 5;
+  margin-left: auto;
+  @include breakpoint("small") {
+    order: revert;
+  }
+  @include breakpoint("large") {
+    width: 48%;
+  }
+  @include breakpoint("extra-large") {
+    margin-top: -110px;
+    min-width: 593px;
+    width: 32%;
+  }
+}
+.request-block {
+  color: #fff;
+  background: #add739;
+  text-align: center;
+  margin: 20px;
+  @include breakpoint("small") {
+    margin: 20px 0px;
+  }
+  @include breakpoint("large") {
+    margin: 0;
+  }
+  h2 {
+    font-size: 40px;
+    line-height: 62px;
+    font-family: "VolteBold";
+    padding: 14px 50px 14px 50px;
+    margin: 0;
+    @include breakpoint("large") {
+      font-size: 48px;
+      line-height: 56px;
+    }
+  }
+  button {
+    width: 464px;
+    height: 63px;
+    margin: 0px 0px 48px 0px;
+    border: 0;
+    background: #ff9d00;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 3px;
+  }
+}
+.finances-block {
+  background: #f4f4f4;
+  margin: 0px 20px;
+  @include breakpoint("small") {
+    margin: 20px 0px;
+  }
+  @include breakpoint("large") {
+    margin: -350px 0px 0px 0px;
+  }
+  @include breakpoint("extra-large") {
+    margin: 0;
+  }
+
+  // @include breakpoint("extra-large") {
+  //   margin: 66px 0px 0px 0px;
+  // }
+  h3 {
+    margin: 0;
+    padding: 16px 0px 0px 48px;
+    font-size: 24px;
+    font-family: "VolteBold";
+    @include breakpoint("small") {
+      font-size: 48px;
+    }
+    @include breakpoint("large") {
+      padding: 16px 0px 0px 16px;
+    }
+    span {
+      display: none;
+      @include breakpoint("large") {
+        display: inline;
+      }
+    }
+  }
+}
+.finances-item {
+  padding: 0px 0px 20px 20px;
+  @include breakpoint("small") {
+    padding: 0px 50px 50px 50px;
+  }
+  h6 {
+    font-size: 12px;
+    margin: 0;
+    font-family: "VolteBold";
+    @include breakpoint("small") {
+      font-size: 24px;
+    }
+  }
+  p {
+    font-size: 10px;
+    @include breakpoint("small") {
+      font-size: revert;
+    }
+  }
+  &__authordate {
+    color: #add739;
+    font-size: 12px;
+    @include breakpoint("small") {
+      font-size: revert;
+    }
+    b {
+      font-family: "VolteBold";
+    }
+  }
+}
+
+.opinions-block {
+  height: 215px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(0deg, rgba(173, 215, 57, 0.1) 0%, #add739 79%);
+  p {
+    font-size: 33px;
+  }
+}
+
+/*blogdetail styles*/
+
+.blogdetail {
+  font-family: "Volte";
+  h1,
+  h2,
+  h3 {
+    color: #add739;
+  }
+  &__wrap {
+    @include breakpoint("extra-large") {
+      display: flex;
+    }
+  }
+  &__date {
+    display: none;
+    @include date;
+    @include breakpoint("extra-large") {
+      position: absolute;
+      top: 50px;
+      display: revert;
+      background: #ff9d00;
+      width: 90px;
+      height: 130px;
+      line-height: 50px;
+      font-size: 29px;
+      font-family: "VolteBold";
+      span {
+        @include breakpoint("extra-large") {
+          font-size: 60px;
+        }
+      }
+    }
+  }
+  &__main-image {
+    width: 100%;
+    position: relative;
+    img {
+      width: 100%;
+    }
+  }
+  &__content {
+    padding: 0px 36px;
+    @include breakpoint("extra-large") {
+      padding: 0;
+    }
+    h1 {
+      font-size: 36px;
+      @include breakpoint("extra-large") {
+        font-size: 72px;
+      }
+    }
+    span {
+      font-size: 16px;
+      font-family: "VolteBold";
+      @include breakpoint("extra-large") {
+        font-size: 32px;
+      }
+    }
+    p {
+      font-size: 12px;
+      @include breakpoint("extra-large") {
+        font-size: 24px;
+      }
+    }
+    h2 {
+      font-size: 24px;
+      font-family: "VolteBold";
+      @include breakpoint("extra-large") {
+        font-size: 48px;
+      }
+    }
+  }
+  &__tags {
+    font-size: 12px;
+    text-transform: uppercase;
+    @include breakpoint("extra-large") {
+      font-size: 24px;
+    }
+    b {
+      font-family: "VolteBold";
+    }
+  }
+  .articles-block {
+    width: 100%;
+    padding: 0px 36px;
+    box-sizing: border-box;
+    @include breakpoint("extra-large") {
+      padding: 0;
+    }
+    h3 {
+      font-size: 20px;
+      font-family: "VolteBold";
+      @include breakpoint("extra-large") {
+        font-size: 40px;
+      }
+    }
+    &__wrap {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      @include breakpoint("small") {
+        flex-direction: row;
+        padding: 0px;
+      }
+    }
+    .articles-item {
+      width: 100%;
+      display: flex;
+      min-height: 70px;
+      @include breakpoint("small") {
+        width: 45%;
+        flex-direction: row;
+        display: block;
+      }
+      @include breakpoint("extra-large") {
+        display: flex;
+        position: relative;
+      }
+      &__wrap {
+        width: 100%;
+      }
+      img {
+        display: none;
+        @include breakpoint("small") {
+          display: inline;
+          width: 100%;
+          z-index: 1;
+        }
+        @include breakpoint("extra-large") {
+          width: 143px;
+          height: 95px;
+        }
+      }
+      &__date {
+        @include date;
+        background: #add739;
+        @include breakpoint("extra-large") {
+          position: absolute;
+          margin-top: 70px;
+          width: 25px;
+          height: 36px;
+          line-height: 14px;
+          font-size: 10px;
+        }
+        span {
+          @include breakpoint("extra-large") {
+            font-size: 18px;
+          }
+        }
+      }
+      p {
+        font-family: "VolteBold";
+        font-size: 12px;
+        margin: 0px 12px 12px 12px;
+        @include breakpoint("small") {
+          font-size: 22px;
+          margin: 36px 0px;
+          min-height: 72px;
+        }
+        @include breakpoint("extra-large") {
+          margin: 12px 0px 4px 12px;
+          min-height: revert;
+        }
+      }
+      a {
+        @include readMore;
+        padding-left: 10px;
+        @include breakpoint("small") {
+          padding-left: 0;
+        }
+        @include breakpoint("extra-large") {
+          padding-left: 10px;
+        }
+      }
+    }
+  }
+  aside {
+    width: 100%;
+    min-width: 593px;
+  }
+  // nav {
+  //   margin: 0px 36px;
+  // }
+
+  nav ul {
+    max-width: 510px;
+    padding-left: 30px;
+    @include breakpoint("small") {
+      padding-left: revert;
+    }
+    li {
+      list-style: none;
+      padding-top: 22px;
+      line-height: 40px;
+      border-bottom: 1px solid #add739;
+      @include breakpoint("small") {
+        border-bottom: 2.13px solid #add739;
+      }
+      a {
+        color: #000;
+        font-size: 25px;
+        text-decoration: none;
+        font-family: "VolteBold";
+        @include breakpoint("small") {
+          font-size: 42px;
+        }
+      }
+    }
+  }
+
+  .sidebar__title {
+    margin: 0px 36px;
+    h1 {
+      color: #fff;
+    }
+  }
+  .recent-block {
+    margin: 36px 36px;
+    padding: 22px 36px;
+    background: #f4f4f4;
+    @include breakpoint("extra-large") {
+      padding-top: 370px;
+      background: transparent;
+    }
+    h2 {
+      color: #000;
+      margin: 0;
+      font-size: 24px;
+      font-family: "VolteBold";
+      @include breakpoint("extra-large") {
+        font-size: 60px;
+        border-bottom: 8.5px solid rgba(173, 215, 57, 0.5);
+      }
+    }
+    p {
+      font-size: 16px;
+      font-family: "VolteBold";
+      @include breakpoint("extra-large") {
+        font-size: 32px;
+      }
+    }
+    .recent__item {
+      a {
+        @include readMore;
+        text-transform: capitalize;
+      }
+    }
+  }
+  .comment-block {
+    width: 100%;
+    @include breakpoint("extra-large") {
+      padding-top: 50px;
+    }
+    h1 {
+      font-size: 24px;
+      padding: 0px 40px;
+      @include breakpoint("extra-large") {
+        font-size: 48px;
+        padding: 0;
+      }
+    }
+    &__textarea {
+      padding: 0px 40px;
+      @include breakpoint("extra-large") {
+        padding: 0px;
+      }
+      textarea {
+        width: 100%;
+        background: rgba(77, 77, 77, 0.1);
+        border: 0;
+        border-radius: 23px;
+        resize: none;
+        @include breakpoint("extra-large") {
+          width: 1026px;
+          height: 268px;
+        }
+      }
+    }
+  }
+  .subscribe-block {
+    h3 {
+      padding-top: 6px;
+      color: #fff;
+    }
+  }
+  .return {
+    display: none;
+    @include breakpoint("extra-large") {
+      display: block;
+      width: 162px;
+      height: 33px;
+      border: 0;
+      margin: 70px auto;
+      text-transform: uppercase;
+      background: rgba(77, 77, 77, 0.1);
+      font-size: 22px;
+    }
+  }
+}
